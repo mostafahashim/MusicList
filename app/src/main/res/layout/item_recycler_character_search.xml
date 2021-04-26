@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="music.list.model.CharacterModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layoutItemRecyclerService"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_90"
+        android:layout_margin="@dimen/padding_10"
+        android:background="@drawable/big_round_corner_color_primary_selector"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivItemRecyclerService"
+            imageUrlBigRoundStartRect="@{model.thumbnail.path.concat(@string/dot).concat(model.thumbnail.extension)}"
+            android:layout_width="@dimen/padding_100"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_placeholder" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/padding_10"
+            android:fontFamily="@font/avenir_heavy"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            app:htmlText="@{model.name}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_16" />
+
+    </LinearLayout>
+</layout>
