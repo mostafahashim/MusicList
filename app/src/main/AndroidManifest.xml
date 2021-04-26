@@ -65,7 +65,7 @@
             android:configChanges="density|keyboard|keyboardHidden|orientation|screenSize|locale|layoutDirection"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar.LightScreen" />
+            android:theme="@style/AppTheme.NoActionBar.DarkScreen" />
 
         <activity
             android:name=".view.activity.characterDetails.CharacterDetailsActivity"

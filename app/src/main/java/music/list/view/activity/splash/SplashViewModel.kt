@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import music.list.MyApplication
 import music.list.R
-import music.list.util.DataProvider
 import music.list.view.activity.baseActivity.BaseActivityViewModel
 import music.list.util.Preferences
 import io.reactivex.*
@@ -15,10 +14,9 @@ import kotlinx.coroutines.launch
 import music.list.remoteConnection.JsonParser
 import music.list.remoteConnection.URL
 import music.list.remoteConnection.remoteService.RemoteCallback
-import music.list.remoteConnection.remoteService.startGetMethodUsingCoroutines
 import music.list.remoteConnection.remoteService.startPostMethodUsingCoroutines
+import music.list.remoteConnection.remoteService.startPostMethodUsingRX
 import music.list.remoteConnection.setup.getDefaultParams
-import music.list.util.GatewayKey
 import okhttp3.MultipartBody
 import java.util.concurrent.TimeUnit
 
@@ -35,11 +33,11 @@ class SplashViewModel(
     var connectionErrorMessage = ""
 
     init {
-        isShowLoader.value = false
+        isShowLoader.value = true
         isShowError.value = false
 
         timerFinished.value = false
-        connectionFinished.value = true
+        connectionFinished.value = false
         startTimer()
 
         getAccessDataApi()
@@ -64,11 +62,9 @@ class SplashViewModel(
     }
 
     fun getAccessDataApi() {
-        var params = getDefaultParams(application, MultipartBody.Builder())
-
         viewModelScope.launch {
             startPostMethodUsingCoroutines(URL.getAccessTokenUrl(),
-                params.build(),
+                null,
                 object : RemoteCallback {
                     override fun onStartConnection() {
                         isShowLoader.value = true
@@ -76,22 +72,19 @@ class SplashViewModel(
                     }
 
                     override fun onFailureConnection(errorMessage: Any?) {
-                        try {
-                            Log.i("ApiError", errorMessage.toString())
-                            isShowLoader.value = false
+                        isShowLoader.value = false
+                        connectionErrorMessage = try {
                             var responseModel =
                                 JsonParser().getParentResponseModel(errorMessage.toString())
-                            connectionErrorMessage = responseModel?.message
+                            responseModel?.description
                                 ?: application.context.getString(R.string.something_went_wrong_please_try_again_)
                         } catch (e: Exception) {
-                            connectionErrorMessage =
-                                application.context.getString(R.string.something_went_wrong_please_try_again_)
+                            application.context.getString(R.string.something_went_wrong_please_try_again_)
                         }
                         isShowError.value = true
                     }
 
                     override fun onSuccessConnection(response: Any?) {
-                        isShowLoader.value = false
                         try {
                             var responseModel =
                                 JsonParser().getParentResponseModel(response.toString())
@@ -112,6 +105,15 @@ class SplashViewModel(
 
                     override fun onLoginAgain(errorMessage: Any?) {
                         isShowLoader.value = false
+                        connectionErrorMessage = try {
+                            var responseModel =
+                                JsonParser().getParentResponseModel(errorMessage.toString())
+                            responseModel?.description
+                                ?: application.context.getString(R.string.something_went_wrong_please_try_again_)
+                        } catch (e: Exception) {
+                            application.context.getString(R.string.something_went_wrong_please_try_again_)
+                        }
+                        isShowError.value = true
                     }
                 })
         }

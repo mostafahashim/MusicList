@@ -1,36 +1,24 @@
 package music.list.view.activity.main
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.media.MediaScannerConnection
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.ScaleAnimation
-import android.widget.ImageView
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import music.list.R
 import music.list.databinding.ActivityMainBinding
-import music.list.model.CharacterModel
+import music.list.model.MusicModel
 import music.list.remoteConnection.setup.isInternetAvailable
-import music.list.util.ScreenSizeUtils
 import music.list.view.activity.baseActivity.BaseActivity
 import music.list.view.activity.characterDetails.CharacterDetailsActivity
 
 class MainActivity : BaseActivity(
     R.string.app_name, true, false, true,
-    false, false, false, true, false,
+    false, false, false, false, false,
 ), MainViewModel.Observer {
 
     lateinit var binding: ActivityMainBinding
@@ -51,8 +39,6 @@ class MainActivity : BaseActivity(
 
 
     override fun initializeViews() {
-        var screenWidth: Int = ScreenSizeUtils().getScreenWidth(this)
-        binding.viewModel!!.updateBooksAdapterColumnWidth(screenWidth)
     }
 
 
@@ -73,35 +59,16 @@ class MainActivity : BaseActivity(
         })
 
         binding.layoutError.tvRetry.setOnClickListener {
-            binding.viewModel!!.getHomeDataApi()
+            binding.viewModel!!.getSearchResultApi()
         }
 
-        binding.recyclerView.addOnScrollListener(object :
-            RecyclerView.OnScrollListener() {
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
+        binding.edttxtSearchPopupdialogSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+                && binding.edttxtSearchPopupdialogSearch.text.toString().length > 1
+            ) {
+                binding.viewModel?.getSearchResultApi()
             }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val pastVisibleItems =
-                    (recyclerView.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition()
-                //first item
-                binding.swipeRefreshHomeFragment.isEnabled = pastVisibleItems == 0
-
-                val visibleItemCount = recyclerView.layoutManager!!.childCount
-                val totalItemCount = recyclerView.layoutManager!!.itemCount
-
-                if (pastVisibleItems + visibleItemCount >= totalItemCount &&
-                    !binding.viewModel?.isShowRefresh?.value!! &&
-                    !binding.viewModel?.isShowLoader?.value!!
-                    && binding.viewModel?.characterModels?.size!! < binding.viewModel?.total!!
-                ) {
-                    //End of list
-                    binding.viewModel!!.getNextItemsDataApi()
-                }
-            }
+            false
         })
     }
 
@@ -125,15 +92,19 @@ class MainActivity : BaseActivity(
         }
     }
 
-    override fun openCharacterDetails(characterModel: CharacterModel) {
+    override fun openMusicDetails(musicModel: MusicModel) {
         Intent(this@MainActivity, CharacterDetailsActivity::class.java).also {
             it.putExtra(
                 "CharacterModel",
-                characterModel
+                musicModel
             )
             startActivity(it)
             overridePendingTransition(R.anim.slide_from_right_to_left, R.anim.slide_in_left)
         }
+    }
+
+    override fun hideKeyPad() {
+        hideKeyPad(binding.edttxtSearchPopupdialogSearch)
     }
 
 }

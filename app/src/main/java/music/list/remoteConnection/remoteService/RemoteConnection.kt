@@ -26,7 +26,7 @@ fun startGetMethodWithCustomUrl(
     val apiInterface = ConnectionHandler.getInstance().getClientWithCustomUrl(baseUrl)?.create(
         APIInterface::class.java)
     val call = apiInterface!!.doGetConnection(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction,
         params
     )
@@ -145,7 +145,7 @@ fun startPostMethodWithGSONParams(
         json
     )
     val call = apiInterface!!.doPostConnection(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction,
         body
     )

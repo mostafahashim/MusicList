@@ -14,11 +14,9 @@ import android.media.ExifInterface
 import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
-import android.os.SystemClock
 import android.provider.MediaStore
 import androidx.annotation.AnyRes
 import music.list.R
-import music.list.model.CharacterModel
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

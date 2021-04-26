@@ -17,7 +17,7 @@ suspend fun startGetMethodUsingCoroutines(
     remoteCallback.onStartConnection()
     try {
         val response = apiInterface!!.doGetConnectionUsingCoroutines(
-            getDefaultHeaders(false), urlFunction, params
+            getDefaultHeaders(false,true), urlFunction, params
         )
         if ((response.code() == 200 || response.code() == 201) && response.isSuccessful) {
             remoteCallback.onSuccessConnection(response.body().toString())
@@ -51,17 +51,21 @@ suspend fun startGetMethodUsingCoroutines(
 
 suspend fun startPostMethodUsingCoroutines(
     urlFunction: String,
-    params: MultipartBody,
+    params: MultipartBody?,
     remoteCallback: RemoteCallback
 ) {
     val apiInterface = ConnectionHandler.getInstance().getClient()?.create(APIInterface::class.java)
     remoteCallback.onStartConnection()
     try {
-        val response = apiInterface!!.doPostConnectionUsingCoroutines(
-            getDefaultHeaders(true),
-            urlFunction,
-            params
-        )
+        val response =
+            if (params == null) apiInterface!!.doPostConnectionWithoutParamsUsingCoroutines(
+                getDefaultHeaders(true,false),
+                urlFunction
+            ) else apiInterface!!.doPostConnectionUsingCoroutines(
+                getDefaultHeaders(true,true),
+                urlFunction,
+                params
+            )
         if ((response.code() == 200 || response.code() == 201) && response.isSuccessful) {
             remoteCallback.onSuccessConnection(response.body()!!.toString())
         } else if (response.code() == 401 && response.errorBody() != null) {
@@ -107,7 +111,7 @@ suspend fun startPostMethodWithGSONParamsUsingCoroutines(
         )
 
         val response = apiInterface!!.doPostConnectionUsingCoroutines(
-            getDefaultHeaders(false),
+            getDefaultHeaders(false,true),
             urlFunction,
             body
         )

@@ -55,6 +55,15 @@ interface APIInterface {
         ) function: String, @Body params: RequestBody
     ): Single<Response<String>>
 
+    @POST("{function}")
+    fun doPostConnectionWithoutParamsUsingRX(
+        @HeaderMap headers: Map<String, String>,
+        @Path(
+            value = "function",
+            encoded = true
+        ) function: String
+    ): Single<Response<String>>
+
 
     @GET("{function}")
     suspend fun doGetConnectionUsingCoroutines(
@@ -72,5 +81,14 @@ interface APIInterface {
             value = "function",
             encoded = true
         ) function: String, @Body params: RequestBody
+    ): Response<String>
+
+    @POST("{function}")
+    suspend fun doPostConnectionWithoutParamsUsingCoroutines(
+        @HeaderMap headers: Map<String, String>,
+        @Path(
+            value = "function",
+            encoded = true
+        ) function: String
     ): Response<String>
 }

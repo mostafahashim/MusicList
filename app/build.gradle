@@ -34,14 +34,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", '"http://staging-gateway.mondiamedia.com/v2/api/"'
+            buildConfigField "String", "BASE_URL", '"http://staging-gateway.mondiamedia.com/"'
             manifestPlaceholders = [usesCleartextTraffic: "true"]
         }
 
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", '"http://staging-gateway.mondiamedia.com/v2/api/"'
+            buildConfigField "String", "BASE_URL", '"http://staging-gateway.mondiamedia.com/"'
             manifestPlaceholders = [usesCleartextTraffic: "true"]
         }
     }

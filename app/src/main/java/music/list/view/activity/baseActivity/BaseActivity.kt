@@ -30,7 +30,6 @@ import music.list.databinding.ActivityBaseBinding
 import music.list.observer.OnAskUserAction
 import music.list.util.*
 import music.list.view.activity.splash.SplashActivity
-import music.list.view.sub.PopupDialogSearch
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -117,9 +116,6 @@ abstract class BaseActivity(
         }
 
         override fun onSearchClicked() {
-            // search
-            val popupDialogSearch = PopupDialogSearch()
-            popupDialogSearch.show(supportFragmentManager, "PopupDialogSearch")
         }
 
         override fun onLoginAgain() {

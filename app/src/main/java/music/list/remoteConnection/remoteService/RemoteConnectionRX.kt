@@ -23,13 +23,13 @@ fun startGetTwoApisMethodUsingRX(
     val apiInterface = ConnectionHandler.getInstance().getClient()?.create(APIInterface::class.java)
     var result = ArrayList<Response<String>>()
     return apiInterface!!.doGetConnectionUsingRX(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction1,
         params1
     )!!.flatMap { response1: Response<String> ->
         result.add(response1)
         return@flatMap apiInterface!!.doGetConnectionUsingRX(
-            getDefaultHeaders(false),
+            getDefaultHeaders(false,true),
             urlFunction2,
             params2
         )
@@ -106,7 +106,7 @@ fun startGetMethodUsingRX(
 ): Disposable {
     val apiInterface = ConnectionHandler.getInstance().getClient()?.create(APIInterface::class.java)
     return apiInterface!!.doGetConnectionUsingRX(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction,
         params
     )!!.subscribeOn(Schedulers.io())
@@ -148,15 +148,20 @@ fun startGetMethodUsingRX(
 
 fun startPostMethodUsingRX(
     urlFunction: String,
-    params: MultipartBody,
+    params: MultipartBody?,
     remoteCallback: RemoteCallback
 ): Disposable {
     val apiInterface = ConnectionHandler.getInstance().getClient()?.create(APIInterface::class.java)
-    return apiInterface!!.doPostConnectionUsingRX(
-        getDefaultHeaders(true),
+    val response = if (params == null) apiInterface!!.doPostConnectionWithoutParamsUsingRX(
+        getDefaultHeaders(true,false),
+        urlFunction
+    ) else apiInterface!!.doPostConnectionUsingRX(
+        getDefaultHeaders(true,true),
         urlFunction,
         params
-    )!!.observeOn(AndroidSchedulers.mainThread())
+    )
+
+    return response.observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
         .doOnSubscribe {
             remoteCallback.onStartConnection()
@@ -213,13 +218,13 @@ fun startPostTwoApisMethodWithGSONParamsUsingRX(
     )
     var result = ArrayList<Response<String>>()
     return apiInterface!!.doPostConnectionUsingRX(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction1,
         body1
     )!!.flatMap { response1: Response<String> ->
         result.add(response1)
         return@flatMap apiInterface!!.doPostConnectionUsingRX(
-            getDefaultHeaders(false),
+            getDefaultHeaders(false,true),
             urlFunction2,
             body2
         )
@@ -303,7 +308,7 @@ fun startPostMethodWithGSONParamsUsingRX(
     )
 
     return apiInterface!!.doPostConnectionUsingRX(
-        getDefaultHeaders(false),
+        getDefaultHeaders(false,true),
         urlFunction,
         body
     )!!.observeOn(AndroidSchedulers.mainThread())

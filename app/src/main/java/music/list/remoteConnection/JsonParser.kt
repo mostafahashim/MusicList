@@ -19,10 +19,10 @@ class JsonParser {
         }
     }
 
-    fun getCharactersListResponseModel(response: String?): CharactersListResponseModel? {
+    fun getMusicModels(response: String?): ArrayList<MusicModel>? {
         return try {
             val gson = Gson()
-            val type = object : TypeToken<CharactersListResponseModel>() {
+            val type = object : TypeToken<ArrayList<MusicModel>>() {
 
             }.type
             gson.fromJson(response, type)
@@ -31,20 +31,6 @@ class JsonParser {
             null
         }
     }
-
-    fun getCharacterComicsResponseModel(response: String?): CharacterComicsResponseModel? {
-        return try {
-            val gson = Gson()
-            val type = object : TypeToken<CharacterComicsResponseModel>() {
-
-            }.type
-            gson.fromJson(response, type)
-        } catch (e1: Exception) {
-            e1.printStackTrace()
-            null
-        }
-    }
-
 }
 
 

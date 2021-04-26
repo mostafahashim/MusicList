@@ -36,6 +36,25 @@ class SplashActivity : BaseActivity(
     }
 
     override fun setListener() {
+        binding.viewModel!!.isShowError.removeObservers(this)
+        binding.viewModel!!.isShowError.observe(this, Observer {
+            if (it && lifecycle.currentState == Lifecycle.State.RESUMED) {
+                binding.layoutError.ivError.setImageResource(
+                    if (isInternetAvailable(this))
+                        R.drawable.error_ice_creame_icon else R.drawable.error_router_connection_icon
+                )
+                binding.layoutError.tvErrorTitleConnection.text =
+                    if (isInternetAvailable(this))
+                        getString(R.string.oh_no) else getString(R.string.you_are_offline)
+                binding.layoutError.tvErrorBodyConnection.text = if (isInternetAvailable(this))
+                    binding.viewModel!!.connectionErrorMessage else getString(R.string.no_internet_connection)
+            }
+        })
+
+        binding.layoutError.tvRetry.setOnClickListener {
+            binding.viewModel!!.getAccessDataApi()
+        }
+
         binding.viewModel!!.timerFinished.removeObservers(this@SplashActivity)
         binding.viewModel!!.timerFinished.observe(this, Observer {
             if (it && binding.viewModel!!.connectionFinished.value!! && lifecycle.currentState == Lifecycle.State.RESUMED) {

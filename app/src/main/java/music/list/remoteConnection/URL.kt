@@ -3,28 +3,15 @@ package music.list.remoteConnection
 object URL {
 
     fun getAccessTokenUrl(): String {
-        var url = "gateway/token/client"
+        var url = "v0/api/gateway/token/client"
         url = url.replace(" ".toRegex(), "%20")
         return url
     }
 
     fun getMusicListUrl(): String {
-        var url = "sayt/flat"
+        var url = "v2/api/sayt/flat"
         url = url.replace(" ".toRegex(), "%20")
         return url
     }
-
-    fun getCharacterDetailsUrl(id: Int): String {
-        var url = "characters/$id"
-        url = url.replace(" ".toRegex(), "%20")
-        return url
-    }
-
-    fun getCharacterComicsUrl(id: Int): String {
-        var url = "characters/$id/comics"
-        url = url.replace(" ".toRegex(), "%20")
-        return url
-    }
-
 
 }
