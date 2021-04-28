@@ -35,7 +35,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_10"
                     android:orientation="horizontal"
                     android:padding="@dimen/padding_8">
 
@@ -83,8 +82,8 @@
 
                         <RelativeLayout
                             android:id="@+id/layoutAnyIcon1CustomActionbar"
-                            android:layout_width="@dimen/padding_70"
-                            android:layout_height="@dimen/padding_70"
+                            android:layout_width="@dimen/padding_50"
+                            android:layout_height="@dimen/padding_50"
                             android:layout_gravity="center_vertical"
                             android:gravity="center">
 
@@ -94,7 +93,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/circle_bg_transparent_with_transparent_gray_selector"
                                 android:onClick="@{()->viewModel.onSearchClicked()}"
-                                android:padding="@dimen/padding_10"
+                                android:padding="@dimen/padding_5"
                                 android:src="@drawable/search_red_icon"
                                 app:tint="@color/colorAccent"/>
 
@@ -127,8 +126,8 @@
 
                     <ImageView
                         android:id="@+id/ivLogoCustomActionBar"
-                        android:layout_width="@dimen/padding_50"
-                        android:layout_height="@dimen/padding_50"
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
                         android:layout_centerInParent="true"
                         android:adjustViewBounds="true"
                         android:src="@mipmap/splash_logo" />

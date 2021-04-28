@@ -17,8 +17,8 @@ import music.list.view.activity.baseActivity.BaseActivity
 import music.list.view.activity.characterDetails.CharacterDetailsActivity
 
 class MainActivity : BaseActivity(
-    R.string.app_name, true, false, true,
-    false, false, false, false, false,
+    R.string.app_name, false, false, true,
+    false, false, true, false, false,
 ), MainViewModel.Observer {
 
     lateinit var binding: ActivityMainBinding
