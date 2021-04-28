@@ -66,8 +66,10 @@ class MainActivity : BaseActivity(
         binding.viewModel!!.isShowNoData.observe(this, Observer {
             if (it) {
                 binding.layoutNoData.tvErrorBodyConnection.text =
-                    if (binding.viewModel?.keyWord?.value.isNullOrEmpty())
-                        getString(R.string.start_search_to_get_music_list) else getString(R.string.no_data_found)
+                    if (binding.viewModel?.query?.value.isNullOrEmpty())
+                        getString(R.string.start_search_to_get_music_list)
+                    else
+                        getString(R.string.no_data_found)
             }
         })
 

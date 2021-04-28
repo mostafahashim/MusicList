@@ -18,12 +18,10 @@ open class BaseActivityViewModel(
     var application: MyApplication
 ) : AndroidViewModel(application) {
     lateinit var baseViewModelObserver: BaseViewModelObserver
-    var keyWord = MutableLiveData<String>()
 
     var baseCompositeDisposable = CompositeDisposable()
 
     init {
-        keyWord.value = ""
     }
 
     fun onButtonBackClicked() {

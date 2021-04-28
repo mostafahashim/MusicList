@@ -101,7 +101,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -114,20 +113,30 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_roman"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12"
+                    app:htmlText="@{viewModel.publishingDate}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
                     android:fontFamily="@font/avenir_heavy"
                     android:includeFontPadding="false"
-                    app:convertSecondsToMinutes="@{viewModel.duration}"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/font_size_16" />
+                    android:textSize="@dimen/font_size_16"
+                    app:convertSecondsToMinutes="@{viewModel.duration}" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -140,7 +149,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_20"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -153,7 +161,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -166,7 +173,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_20"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -179,7 +185,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -192,7 +197,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_20"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -205,7 +209,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -218,7 +221,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_20"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -231,7 +233,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
@@ -244,7 +245,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/padding_20"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"

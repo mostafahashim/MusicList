@@ -28,6 +28,7 @@ class CharacterDetailsViewModel(
     var artist = MutableLiveData<String>()
     var genres = MutableLiveData<String>()
     var numnerOfTracks = MutableLiveData<String>()
+    var publishingDate = MutableLiveData<String>()
 
     init {
         image.value = ""
@@ -36,6 +37,7 @@ class CharacterDetailsViewModel(
         type.value = ""
         genres.value = ""
         numnerOfTracks.value = ""
+        publishingDate.value = ""
 
     }
 
@@ -47,6 +49,7 @@ class CharacterDetailsViewModel(
         artist.value = musicModel?.mainArtist?.name ?: ""
         duration.value = musicModel?.duration ?: "0"
         numnerOfTracks.value = musicModel?.numberOfTracks ?: "0"
+        publishingDate.value = musicModel?.publishingDate ?: ""
         for (genre in musicModel?.genres ?: ArrayList()) {
             if (genres.value.isNullOrEmpty())
                 genres.value = genre
