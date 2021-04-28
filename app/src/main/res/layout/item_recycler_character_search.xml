@@ -16,32 +16,81 @@
     <LinearLayout
         android:id="@+id/layoutItemRecyclerService"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/padding_90"
-        android:layout_margin="@dimen/padding_10"
+        android:layout_height="@dimen/padding_110"
+        android:layout_marginStart="@dimen/padding_20"
+        android:layout_marginTop="@dimen/padding_5"
+        android:layout_marginEnd="@dimen/padding_20"
+        android:layout_marginBottom="@dimen/padding_5"
         android:background="@drawable/big_round_corner_color_primary_selector"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ivItemRecyclerService"
             imageUrlBigRoundStartRect="@{@string/create_link(model.cover.medium)}"
-            android:layout_width="@dimen/padding_100"
+            android:layout_width="@dimen/padding_110"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@mipmap/splash_logo" />
 
-        <TextView
-            android:id="@+id/tvName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/padding_10"
-            android:fontFamily="@font/avenir_heavy"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_16"
-            app:htmlText="@{model.title}" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:fontFamily="@font/avenir_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{model.title}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/avenir_heavy"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{model.type}"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/avenir_roman"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_14"
+                app:convertSecondsToMinutes="@{model.duration}" />
+
+            <TextView
+                android:id="@+id/tvArtist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/padding_5"
+                android:fontFamily="@font/avenir_roman"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{@string/artist_with_name(model.mainArtist.name)}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_14" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

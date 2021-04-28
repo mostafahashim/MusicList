@@ -397,5 +397,31 @@ class CustomViewBindings {
             view.requestLayout()
         }
 
+        @BindingAdapter("bind:convertSecondsToMinutes")
+        @JvmStatic
+        fun convertSecondsToMinutes(textView: TextView, seconds: String) {
+            if (seconds.isNullOrEmpty())
+                textView.text = textView.context.getString(R.string.duration_zero)
+            else {
+                try {
+                    var secondsInt = seconds.toInt()
+                    var minutes = (secondsInt / 60)
+                    var remainSeconds = (secondsInt % 60)
+                    var minutesString = minutes.toString()
+                    var remainSecondsString = remainSeconds.toString()
+                    if (minutes < 10)
+                        minutesString = "0$minutes"
+                    if (remainSeconds < 10)
+                        remainSecondsString = "0$remainSeconds"
+                    textView.text = textView.context.getString(
+                        R.string.duration_text,
+                        minutesString,
+                        remainSecondsString
+                    )
+                } catch (e: Exception) {
+                    textView.text = textView.context.getString(R.string.duration_zero)
+                }
+            }
+        }
     }
 }

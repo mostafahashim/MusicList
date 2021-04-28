@@ -25,7 +25,7 @@
             android:layout_marginEnd="@dimen/padding_20"
             android:layout_marginBottom="@dimen/padding_10"
             android:background="@drawable/big_round_corner_color_primary_selector"
-            android:padding="@dimen/padding_5">
+            android:padding="@dimen/padding_3">
 
             <ImageView
                 android:id="@+id/ivSearch_popupdialog_search"
@@ -53,7 +53,7 @@
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:padding="@dimen/padding_15"
+                android:padding="@dimen/padding_10"
                 android:text="@={viewModel.query}"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"

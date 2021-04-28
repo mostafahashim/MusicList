@@ -23,22 +23,36 @@ class CharacterDetailsViewModel(
     var name = MutableLiveData<String>()
     var description = MutableLiveData<String>()
 
+    var type = MutableLiveData<String>()
+    var duration = MutableLiveData<String>()
+    var artist = MutableLiveData<String>()
+    var genres = MutableLiveData<String>()
+    var numnerOfTracks = MutableLiveData<String>()
+
     init {
         image.value = ""
         name.value = ""
         description.value = ""
+        type.value = ""
+        genres.value = ""
+        numnerOfTracks.value = ""
 
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 
     fun setData() {
-//        image.value =
-//            "${musicModel?.thumbnail?.path}.${musicModel?.thumbnail?.extension}"
-//        name.value = musicModel?.name!!
-//        description.value = musicModel?.description!!
+        image.value = musicModel?.cover?.large ?: ""
+        name.value = musicModel?.title ?: ""
+        description.value = musicModel?.label ?: ""
+        type.value = musicModel?.type ?: ""
+        artist.value = musicModel?.mainArtist?.name ?: ""
+        duration.value = musicModel?.duration ?: "0"
+        numnerOfTracks.value = musicModel?.numberOfTracks ?: "0"
+        for (genre in musicModel?.genres ?: ArrayList()) {
+            if (genres.value.isNullOrEmpty())
+                genres.value = genre
+            else
+                genres.value = "${genres.value ?: ""}, $genre"
+        }
     }
 
     interface Observer {

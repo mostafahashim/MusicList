@@ -45,6 +45,8 @@ class CharacterDetailsActivity : BaseActivity(
         binding.collapsingToolbarBookDetailsActivity.setCollapsedTitleTextColor(Color.TRANSPARENT)
         binding.appbar.setExpanded(true, false)
 
+        binding.viewModel?.setData()
+
     }
 
     override fun setListener() {

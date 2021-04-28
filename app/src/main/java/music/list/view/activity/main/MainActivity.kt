@@ -62,6 +62,15 @@ class MainActivity : BaseActivity(
             binding.viewModel!!.getSearchResultApi()
         }
 
+        binding.viewModel!!.isShowNoData.removeObservers(this)
+        binding.viewModel!!.isShowNoData.observe(this, Observer {
+            if (it) {
+                binding.layoutNoData.tvErrorBodyConnection.text =
+                    if (binding.viewModel?.keyWord?.value.isNullOrEmpty())
+                        getString(R.string.start_search_to_get_music_list) else getString(R.string.no_data_found)
+            }
+        })
+
         binding.edttxtSearchPopupdialogSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH
                 && binding.edttxtSearchPopupdialogSearch.text.toString().length > 1
@@ -95,7 +104,7 @@ class MainActivity : BaseActivity(
     override fun openMusicDetails(musicModel: MusicModel) {
         Intent(this@MainActivity, CharacterDetailsActivity::class.java).also {
             it.putExtra(
-                "CharacterModel",
+                "MusicModel",
                 musicModel
             )
             startActivity(it)

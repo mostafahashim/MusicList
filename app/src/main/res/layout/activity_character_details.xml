@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/ivBackground"
-            imageUrlBlurRect="@{viewModel.image}"
+            imageUrlBlurRect="@{@string/create_link(viewModel.image)}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -52,7 +52,7 @@
 
                 <ImageView
                     android:id="@+id/imgview_image_BookDetailsActivity"
-                    imageUrlBigRoundBottomRect="@{viewModel.image}"
+                    imageUrlBigRoundBottomRect="@{@string/create_link(viewModel.image)}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
@@ -120,8 +120,8 @@
                     android:layout_marginEnd="@dimen/padding_10"
                     android:fontFamily="@font/avenir_heavy"
                     android:includeFontPadding="false"
-                    android:text="@string/description"
-                    android:textColor="@color/red_light"
+                    app:convertSecondsToMinutes="@{viewModel.duration}"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/font_size_16" />
 
                 <TextView
@@ -131,11 +131,128 @@
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_heavy"
+                    android:includeFontPadding="false"
+                    android:text="@string/description"
+                    android:textColor="@color/red_light"
+                    android:textSize="@dimen/font_size_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
                     android:fontFamily="@font/avenir_roman"
                     android:includeFontPadding="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_size_16"
                     app:htmlText="@{viewModel.description}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_heavy"
+                    android:includeFontPadding="false"
+                    android:text="@string/type"
+                    android:textColor="@color/red_light"
+                    android:textSize="@dimen/font_size_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_roman"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16"
+                    app:htmlText="@{viewModel.type}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_heavy"
+                    android:includeFontPadding="false"
+                    android:text="@string/artist"
+                    android:textColor="@color/red_light"
+                    android:textSize="@dimen/font_size_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_roman"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16"
+                    app:htmlText="@{viewModel.artist}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_heavy"
+                    android:includeFontPadding="false"
+                    android:text="@string/number_of_tracks"
+                    android:textColor="@color/red_light"
+                    android:textSize="@dimen/font_size_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_roman"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16"
+                    app:htmlText="@{viewModel.numnerOfTracks}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_heavy"
+                    android:includeFontPadding="false"
+                    android:text="@string/genre"
+                    android:textColor="@color/red_light"
+                    android:textSize="@dimen/font_size_16" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:fontFamily="@font/avenir_roman"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16"
+                    app:htmlText="@{viewModel.genres}" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

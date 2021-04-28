@@ -59,6 +59,7 @@ class MainViewModel(
     }
 
     fun getSearchResultApi() {
+        limit = 40
         var params = getDefaultParams(application, HashMap())
         params["limit"] = limit
         params["query"] = query.value!!
